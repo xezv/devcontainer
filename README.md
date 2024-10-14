@@ -8,13 +8,17 @@ open the vscode and install the devcontainer extension
 then follow these steps to setup
 
 ```bash
+# 1. clone `devcontainer` repository and assign destined directory name(option)
 $ git clone https://github.com/xezv/devcontainer <directory-as-you-hope>
 
+# 2. enter the directory
 $ cd <directory-as-you-hope>
 
-$ git remote remove origin
+# 3. remove all the git history
+$ rm -rf .git
 
-$ git remote add origin <your-repository-url>
+# 4. initialize git
+$ git init
 ```
 
 now you can build the container with the command in vscode
