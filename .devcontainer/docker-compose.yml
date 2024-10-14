@@ -29,14 +29,13 @@ services:
       - SYS_PTRACE
     security_opt:
       - seccomp=unconfined
-    ports:
-      - "12318:8000"
     networks:
-      - dev-net
+      - default
 
 networks:
-  dev-net:
+  default:
+    name: ${DEFAULT_SUBNET}
     driver: bridge
     ipam:
       config:
-        - subnet: 192.168.101.0/24
+        - subnet: ${DEFAULT_SUBNET_CIDR}
