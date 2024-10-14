@@ -1,0 +1,42 @@
+services:
+  app:
+    # archlinux doesn't support arm64 yet
+    # so it's forced to use amd64
+    platform: linux/amd64
+    build:
+      context: .
+      dockerfile: Dockerfile
+      # bulld time args
+      args:
+        USERNAME: ${USERNAME}
+        HELIX_VERSION: ${HELIX_VERSION}
+        USER_GID: ${USER_GID}
+        USER_UID: ${USER_UID}
+        DOTFILES_REPO: ${DOTFILES_REPO}
+        DOTFILES_SETUP_SH: ${DOTFILES_SETUP_SH}
+        DOCKER_BUILDKIT: 1
+
+    env_file:
+      - .env
+
+    volumes:
+      - ..:/workspace
+      # - ..:/workspace
+    command: /bin/bash -c "while sleep 1000; do :; done"
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+      - SYS_PTRACE
+    security_opt:
+      - seccomp=unconfined
+    ports:
+      - "12318:8000"
+    networks:
+      - dev-net
+
+networks:
+  dev-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.101.0/24
