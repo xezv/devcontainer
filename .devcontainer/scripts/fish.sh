@@ -28,6 +28,7 @@ fi
 
 # Install pure theme
 sudo -u "${USERNAME}" fish -c "fisher install pure-fish/pure"
+sudo -u "${USERNAME}" fish -c "fisher install edc/bass"
+fish -c "fisher install edc/bass"
 # sudo -u ${USERNAME} fish -c "fisher install pure-fish/pure"
 echo "fish shell has been configured with the pure theme."
-echo 'ok'

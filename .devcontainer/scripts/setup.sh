@@ -30,21 +30,23 @@ mkdir -p /etc/sudoers.d/
 # add the user to the sudo group then user can run commands with sudo
 echo "adding the user to the sudo group"
 # usermod -aG sudo ${USERNAME}
-usermod -aG wheel ${USERNAME}
+usermod -aG wheel "${USERNAME}"
 
 # append this line to the sudoers file
 # so that the user can run commands with sudo without password
 echo "appending the sudoers file"
-echo "${USERNAME} ALL=(ALL) NOPASSWD:ALL" >>/etc/sudoers.d/${USERNAME}
+echo "${USERNAME} ALL=(ALL) NOPASSWD:ALL" >>"/etc/sudoers.d/${USERNAME}"
 # change the permission of the sudoers file
 # owner 4, group 4, others 0
 # so that only the owner can read the file, and the owner and group can write to the file
 echo "changing the permission of the sudoers file"
-chmod 0440 /etc/sudoers.d/${USERNAME}
+chmod 0440 "/etc/sudoers.d/${USERNAME}"
 
 # change the ownership of the home directory to the user
 echo "changing the ownership of the home directory"
-chown -R ${USERNAME}:${USERNAME} ${USER_HOME}
+chown -R "${USERNAME}":"${USERNAME}" "${USER_HOME}"
+
+
 
 # install sudo
 # apt update -y && apt install -y sudo

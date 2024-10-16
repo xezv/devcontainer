@@ -22,11 +22,17 @@ RUN chmod +x /tmp/scripts/setup.sh && /tmp/scripts/setup.sh
 COPY ./scripts/install.sh /tmp/scripts/install.sh
 RUN chmod +x /tmp/scripts/install.sh && /tmp/scripts/install.sh
 
+# switch to the user
+# USER ${USERNAME}
 COPY ./scripts/fish.sh /tmp/scripts/fish.sh
 RUN chmod +x /tmp/scripts/fish.sh && /tmp/scripts/fish.sh
 
+COPY ./scripts/rust.sh /tmp/scripts/rust.sh
+RUN chmod +x /tmp/scripts/rust.sh && /tmp/scripts/rust.sh
+
 COPY ./scripts/dotfiles.sh /tmp/scripts/dotfiles.sh
 RUN chmod +x /tmp/scripts/dotfiles.sh && /tmp/scripts/dotfiles.sh
+
 
 # make all the scripts executable and move to /tmp/
 # RUN find /tmp/scripts/ -type f -name "*.sh" -exec chmod +x {} \; -exec mv {} /tmp/scripts/ \;

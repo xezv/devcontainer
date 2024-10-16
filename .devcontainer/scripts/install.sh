@@ -14,13 +14,16 @@ pacman -S --noconfirm \
     clang \
     make \
     helix \
-    rust \
     inetutils \
     traceroute \
     openbsd-netcat \
     iproute2 \
     vim \
     github-cli
+
+# install cargo, rustc, rustfmt, clippy, rust-docs, rust-std
+# rustup default stable
+# sudo -u "${USERNAME}" bash -c "rustup default stable"
 
 # `clang` include `clangd`
 # `vim` includes `xxd`

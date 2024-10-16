@@ -3,6 +3,9 @@ services:
     # archlinux doesn't support arm64 yet
     # so it's forced to use amd64
     platform: linux/amd64
+    cpus: 2
+    mem_limit: 4g
+    mem_swappiness: 20g
     build:
       context: .
       dockerfile: Dockerfile
@@ -21,7 +24,6 @@ services:
 
     volumes:
       - ..:/workspace
-      # - ..:/workspace
     command: /bin/bash -c "while sleep 1000; do :; done"
     cap_add:
       - NET_ADMIN

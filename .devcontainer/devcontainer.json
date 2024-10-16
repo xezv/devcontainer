@@ -49,7 +49,6 @@
 	// 	"seccomp=unconfined"
 	// ],
 	// Uncomment the next line if you want to keep your containers running after VS Code shuts down.
-	"shutdownAction": "none",
-	// 필요한 경우 postCreateCommand 주석 해제
-	"postCreateCommand": ""
+	"shutdownAction": "none"
+	// "postCreateCommand": ""
 }
