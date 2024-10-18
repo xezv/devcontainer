@@ -1,0 +1,22 @@
+services:
+  extra:
+    container_name: extra
+    build:
+      context: .
+      dockerfile: infrastructure/Dockerfile.extra
+    command: /bin/bash -c "while sleep 1000; do :; done"
+    env_file:
+      - .env
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+      - SYS_PTRACE
+    security_opt:
+      - seccomp=unconfined
+    networks:
+      default:
+
+networks:
+  default:
+    external: true
+    name: ${SUBNET_NAME}

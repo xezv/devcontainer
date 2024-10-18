@@ -8,7 +8,7 @@ services:
     mem_swappiness: 20g
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.app
       # bulld time args
       args:
         USERNAME: ${USERNAME}
@@ -20,11 +20,11 @@ services:
         DOCKER_BUILDKIT: 1
 
     env_file:
+      # relative path to .env file
       - .env
 
     volumes:
-      - ..:/workspace
-    command: /bin/bash -c "while sleep 1000; do :; done"
+      - ../:/workspace
     cap_add:
       - NET_ADMIN
       - NET_RAW
@@ -32,12 +32,17 @@ services:
     security_opt:
       - seccomp=unconfined
     networks:
-      - default
+      default:
+        ipv4_address: ${NETWORK_BITS}.10
 
 networks:
   default:
-    name: ${DEFAULT_SUBNET}
-    driver: bridge
-    ipam:
-      config:
-        - subnet: ${DEFAULT_SUBNET_CIDR}
+    external: true
+    name: ${SUBNET_NAME}
+# networks:
+#   default:
+#     name: ${DEFAULT_SUBNET}
+#     driver: bridge
+#     ipam:
+#       config:
+#         - subnet: ${DEFAULT_SUBNET_CIDR}

@@ -1,0 +1,10 @@
+FROM --platform=amd64 archlinux:latest
+
+RUN pacman -Syu --noconfirm \
+    inetutils \
+    traceroute \
+    openbsd-netcat \
+    iproute2 \
+    vim 
+
+CMD ["bash"]

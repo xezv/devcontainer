@@ -1,54 +1,51 @@
 {
-	"name": "archlinux",
-	// The 'service' property is the name of the service for the container that VS Code should
-	// use. Update this value and .devcontainer/docker-compose.yml to the real service name.
-	"service": "app",
-	"dockerComposeFile": [
-		"docker-compose.yml"
-	],
-	// The 'workspaceFolder' property is the path VS Code should open by default when
-	// connected. Corresponds to a volume mount in .devcontainer/docker-compose.yml
-	"workspaceFolder": "/workspace",
-	// "workspaceFolder": "/workspace",
-	// "build": {
-	// 	"dockerfile": "Dockerfile"
-	// },
-	"customizations": {
-		"vscode": {
-			"extensions": [
-				// Bash
-				"mads-hartmann.bash-ide-vscode",
-				// C/C++
-				"ms-vscode.cpptools",
-				"llvm-vs-code-extensions.vscode-clangd",
-				// Rust
-				"rust-lang.rust-analyzer",
-				// YAML
-				"redhat.vscode-yaml",
-				// LLDB
-				"vadimcn.vscode-lldb",
-				// Crates
-				"serayuzgur.crates",
-				"tamasfe.even-better-toml"
-			]
-		}
-	},
-	// Comment out to connect as root instead. To add a non-root user, see: https://aka.ms/vscode-remote/containers/non-root.
-	// not only need to specify the user in the Dockerfile, but also need to specify the user in the devcontainer.json
-	"remoteUser": "x",
-	"containerUser": "x",
-	"features": {},
-	// "runArgs": [
-	// 	"--network",
-	// 	// "host"
-	// 	"dev-net",
-	// 	// for ioctl control
-	// 	"--cap-add=NET_ADMIN",
-	// 	"--cap-add=NET_RAW", // for raw socket control 		"--cap-add=SYS_PTRACE",
-	// 	"--security-opt",
-	// 	"seccomp=unconfined"
-	// ],
-	// Uncomment the next line if you want to keep your containers running after VS Code shuts down.
-	"shutdownAction": "none"
-	// "postCreateCommand": ""
+    "name": "archlinux",
+    // The 'service' property is the name of the service for the container that VS Code should
+    // use. Update this value and .devcontainer/docker-compose.yml to the real service name.
+    "service": "app",
+    // "envFile": "${localWorkspaceFolder}/.env",
+    "initializeCommand": "./.devcontainer/infrastructure/setup_network.sh",
+    "dockerComposeFile": [
+        "docker-compose.app.yml",
+        "infrastructure/docker-compose.extra.yml"
+    ],
+    // The 'workspaceFolder' property is the path VS Code should open by default when
+    // connected. Corresponds to a volume mount in .devcontainer/docker-compose.yml
+    "workspaceFolder": "/workspace",
+    // "build": {
+    // 	"dockerfile": "Dockerfile"
+    // },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "mads-hartmann.bash-ide-vscode",
+                "ms-vscode.cpptools",
+                "llvm-vs-code-extensions.vscode-clangd",
+                "rust-lang.rust-analyzer",
+                "redhat.vscode-yaml",
+                "vadimcn.vscode-lldb",
+                "serayuzgur.crates",
+                "tamasfe.even-better-toml",
+                "EditorConfig.EditorConfig"
+            ]
+        }
+    },
+    // Comment out to connect as root instead. To add a non-root user, see: https://aka.ms/vscode-remote/containers/non-root.
+    // not only need to specify the user in the Dockerfile, but also need to specify the user in the devcontainer.json
+    "remoteUser": "x",
+    "containerUser": "x",
+    "features": {},
+    // "runArgs": [
+    // 	"--network",
+    // 	// "host"
+    // 	"dev-net",
+    // 	// for ioctl control
+    // 	"--cap-add=NET_ADMIN",
+    // 	"--cap-add=NET_RAW", // for raw socket control 		"--cap-add=SYS_PTRACE",
+    // 	"--security-opt",
+    // 	"seccomp=unconfined"
+    // ],
+    // Uncomment the next line if you want to keep your containers running after VS Code shuts down.
+    "shutdownAction": "none"
+    // "postCreateCommand": ""
 }

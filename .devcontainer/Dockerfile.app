@@ -1,4 +1,4 @@
-FROM archlinux:latest
+FROM --platform=amd64 archlinux:latest
 
 ARG USERNAME=${USERNAME}
 ARG USER_GID=${USER_GID}
@@ -42,3 +42,7 @@ RUN chmod +x /tmp/scripts/dotfiles.sh && /tmp/scripts/dotfiles.sh
 # remove the `.tmp` dir. don't use `tmp` because it's a reserved directory name
 # e.g. `CodeLLDB` is not working properly when the `tmp` directory is removed
 RUN rm -rf /tmp/scripts/
+
+# keep the container running
+# CMD ["bash"] is ok but if it's not interactive mode, the container will exit
+CMD ["tail", "-f", "/dev/null"]

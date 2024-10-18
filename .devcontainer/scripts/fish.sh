@@ -4,7 +4,15 @@ set -euo pipefail
 # install packages
 pacman -S --needed --noconfirm \
     fish \
-    fisher
+    fisher \
+    starship \
+    fzf \
+    bat \
+    exa \
+    zoxide \
+    fd \
+    ripgrep \
+    zellij
 
 # `fish` is installed at `/usr/sbin/fish` and symlink is at `/usr/bin/fish`
 FISH_PATH=$(which fish)
@@ -27,8 +35,14 @@ else
 fi
 
 # Install pure theme
-sudo -u "${USERNAME}" fish -c "fisher install pure-fish/pure"
 sudo -u "${USERNAME}" fish -c "fisher install edc/bass"
 fish -c "fisher install edc/bass"
-# sudo -u ${USERNAME} fish -c "fisher install pure-fish/pure"
-echo "fish shell has been configured with the pure theme."
+
+cat <<EOF >>"${USER_HOME}/.config/fish/conf.d/starship.fish"
+starship init fish | source
+EOF
+
+starship preset tokyo-night -o ${USER_HOME}/.config/starship.toml
+# sudo -u "${USERNAME}" starship init fish | source
+# sudo -u "${USERNAME}" starship init fish | source
+# starship preset tokyo-night -o "${USER_HOME}/.config/starship.toml"

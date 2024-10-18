@@ -1,0 +1,14 @@
+services:
+  dummy:
+    image: alpine
+    command: exit 0
+    networks:
+      - default
+
+networks:
+  default:
+    name: ${DEFAULT_SUBNET}
+    driver: bridge
+    ipam:
+      config:
+        - subnet: ${DEFAULT_SUBNET_CIDR}
